@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:task_management_ui/models/stage_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+List<Stage> statges = Stage.stages;
+
     return Scaffold(
       backgroundColor: const Color(0xFFEEF2F5),
       body: LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth > 1200) {
-          return const _DesktopLayout();
+          return  _DesktopLayout(stages: statges,);
         } else {
-          return const _TableLayout();
+          return  _TableLayout(constraints: , statges: statges,);
         }
       }),
     );
@@ -19,7 +22,9 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _DesktopLayout extends StatelessWidget {
-  const _DesktopLayout({super.key});
+  const _DesktopLayout({super.key, required this.stages});
+
+  final List<Stage> stages;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,10 @@ class _DesktopLayout extends StatelessWidget {
 }
 
 class _TableLayout extends StatelessWidget {
-  const _TableLayout({super.key});
+  const _TableLayout({super.key, required this.stages});
+
+  final List<Stage> stages;
+
 
   @override
   Widget build(BuildContext context) {
