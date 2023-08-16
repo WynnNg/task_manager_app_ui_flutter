@@ -26,7 +26,41 @@ class _DesktopLayout extends StatelessWidget {
     return Container(
       color: Colors.blue,
       child: const Row(
-        children: [_SideBar()],
+        children: [
+          _SideBar(),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [_ScreenTitle()],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TableLayout extends StatelessWidget {
+  const _TableLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.amber,
+      child: const Row(
+        children: [
+          _SideBar(),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [_ScreenTitle()],
+          )
+        ],
       ),
     );
   }
@@ -74,15 +108,21 @@ class _SideBar extends StatelessWidget {
   }
 }
 
-class _TableLayout extends StatelessWidget {
-  const _TableLayout({super.key});
+class _ScreenTitle extends StatelessWidget {
+  const _ScreenTitle({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
-      child: const Row(
-        children: [_SideBar()],
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Text(
+        'Your Task',
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
       ),
     );
   }
